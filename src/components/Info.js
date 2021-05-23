@@ -17,9 +17,9 @@ const Info = (props) => {
         };
 
         info.update = function (props) {
-            div.innerHTML = '<h4>Resultado del indicador</h4>' +  (props ?
-            '<b>Zona: ' + props.selectedRegion.gid + '</b><br />Valor: ' + props.selectedRegion.value
-            : 'Selecciona una región');
+            div.innerHTML = '<h4>Result of indicator</h4>' +  (props ?
+                '<b>Region: ' + props.selectedRegion.gid + '</b><br />Value: ' + props.selectedRegion.value
+                : 'Select a region');
         };
 
         info.addTo(map);
@@ -31,12 +31,12 @@ const Info = (props) => {
         
         if(info) {
             if(props.selectedRegion.gid === 0) {
-                info.innerHTML = '<h4>Selecciona una región</h4>';
+                info.innerHTML = '<h4>Select a region</h4>';
             }
             else{
-                info.innerHTML = '<h4>Resultado del indicador</h4>' +  (props ?
-                    '<b>Zona: ' + props.selectedRegion.gid + '</b><br />Valor: ' + props.selectedRegion.value
-                    : 'Selecciona una región');
+                info.innerHTML = '<h4>Result of indicator</h4>' +  (props ?
+                    '<b>Region: ' + props.selectedRegion.gid + '</b><br />Value: ' + props.selectedRegion.value
+                    : 'Select a region');
             }
             
         }

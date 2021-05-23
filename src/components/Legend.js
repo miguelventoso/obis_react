@@ -3,18 +3,10 @@ import L from "leaflet";
 import { useEffect } from "react";
 import Style from '../entities/Style'
 
-const Legend = (props) => {
-  const map = useMap();
-  const style = new Style();
+var add = true;
 
-  useEffect(() => {
-    // get color depending on population density value
-
-    const legend = L.control({ position: "bottomleft" });
-
-    legend.onAdd = () => {
-      const div = L.DomUtil.create("div", "info legend");
-      const grades = props.colors.shannon;
+function display(props, div, style) {
+  const grades = props.colors[props.selectedIndicator];
       let labels = [];
       let from;
       let to;
@@ -42,9 +34,31 @@ const Legend = (props) => {
       );
       div.innerHTML = labels.join("<br>");
       return div;
-    };
+}
 
-    legend.addTo(map);
+const Legend = (props) => {
+  const map = useMap();
+  const style = new Style();
+
+  useEffect(() => {
+
+    //if first time called (just to create div, control and add it to map)
+    if(add){
+      const legend = L.control({ position: "bottomleft" });
+
+      legend.onAdd = () => {
+        const div = L.DomUtil.create("div", "info legend");
+        return display(props, div, style);
+      };
+        legend.addTo(map);
+        add = false;
+    }
+    //if second time called just grab it and change its innerHTML
+    else{
+      const div = document.getElementsByClassName('info legend')[0];
+      if(div) return display(props, div, style);
+    }
+    
   }, []);
   return null;
 };

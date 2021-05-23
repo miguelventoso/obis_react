@@ -1,31 +1,20 @@
-import React, {useState, useEffect, useRef, createRef} from 'react';
-import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
+import React, {useState} from 'react';
+import { MapContainer, TileLayer} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Legend from './Legend'
 import Info from './Info'
-import Style from '../entities/Style'
-import CustomGeojson from './CustomGeojson'
-import L, {CRS} from "leaflet";
+import CustomGeojson from '../entities/CustomGeojson'
 import SelectPolygons from './SelectPolygons';
+import Bounds from '../entities/Bounds'
 
-const Bounds = () => {
-  var map = useMap();
-  var bounds = L.latLngBounds([[-350, 350], [350, -350]]);
-  map.setMaxBounds(bounds);
-  map.on('drag', function() {
-    map.panInsideBounds(bounds, { animate: false });
-  });
-  return <></>
-}
+
 
 const MapView = (props) => {
   
   const [selectedRegion, setSelectedRegion] = useState({gid: 0, value: 0});
-  
   return(
     <div>
       <MapContainer center={props.center} zoom={props.zoom} scrollWheelZoom={true} zoomDelta={0.25} zoomSnap={0}>
-        <Bounds/>
         <Info 
           selectedRegion={selectedRegion}/>
         <TileLayer
@@ -35,15 +24,18 @@ const MapView = (props) => {
           minZoom= {2}
         />
         <CustomGeojson
+          key={props.regions + props.selectedIndicator}
           regions={props.regions}
           indicators={props.indicators}
           colors={props.colors}
           setSelectedRegion={setSelectedRegion}
+          selectedIndicator={props.selectedIndicator}
         /> 
-        <SelectPolygons load={props.load} load={props.load}/>
+        <SelectPolygons load={props.load}/>
         <Legend
-          indicator={props.indicators}
-          colors={props.colors}/>
+          key={props.selectedIndicator}
+          colors={props.colors}
+          selectedIndicator={props.selectedIndicator}/>
         
       </MapContainer>
     </div>

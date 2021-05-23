@@ -14,23 +14,39 @@ class LoadGeojsonTask{
     loadGeojson = (setState, type) => {
         switch(type) {
             case 'or':
-                console.log('a');
                 setState(featuresOr);
                 break;
             case 'eez':
-                console.log('b');
                 setState(featuresEez);
                 break;
         }
         
     }
 
-    loadIndicators = (setState) => {
-        setState(indicatorsOr);
+    loadIndicators = (setState, type) => {
+        switch(type) {
+            case 'or':
+                setState(indicatorsOr);
+                break;
+            case 'eez':
+                setState(indicatorsEez);
+                break;
+        }
     }
 
-    loadColors = (setState) => {
-        setState(colorsOr);
+    loadColors = (setState, type) => {
+        switch(type) {
+            case 'or':
+                setState(colorsOr);
+                break;
+            case 'eez':
+                setState(colorsEez);
+                break;
+        }
+    }
+
+    loadSelectedIndicator = (setState, type) => {
+        setState(type);
     }
 
 }
