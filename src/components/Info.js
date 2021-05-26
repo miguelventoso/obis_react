@@ -17,8 +17,8 @@ const Info = (props) => {
         };
 
         info.update = function (props) {
-            div.innerHTML = '<h4>Result of indicator</h4>' +  (props ?
-                '<b>Region: ' + props.selectedRegion.gid + '</b><br />Value: ' + props.selectedRegion.value
+            div.innerHTML = '<h4>Result of indicator</h4>' +  (props ? '<b>Indicator: ' + props.selectedIndicator + '</b><br />' +
+                'Region: ' + props.selectedRegion.gid + '<br />Value: ' + props.selectedRegion.value
                 : 'Select a region');
         };
 
@@ -34,8 +34,8 @@ const Info = (props) => {
                 info.innerHTML = '<h4>Select a region</h4>';
             }
             else{
-                info.innerHTML = '<h4>Result of indicator</h4>' +  (props ?
-                    '<b>Region: ' + props.selectedRegion.gid + '</b><br />Value: ' + props.selectedRegion.value
+                info.innerHTML = '<h4>Result of indicator</h4>' +  (props ? '<b>Indicator: ' + props.selectedIndicator + '</b><br />' +
+                    'Region: ' + props.selectedRegion.gid + '<br />Value: ' + props.selectedRegion.value
                     : 'Select a region');
             }
             

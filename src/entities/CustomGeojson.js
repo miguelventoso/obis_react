@@ -46,11 +46,11 @@ const CustomGeojson = React.memo((props) => {
     }
   
     function onEachRegionClosure(indicators, colors) {
-      const style = new Style();
+        const style = new Style();
       return function onEachRegion(region, layer) {
         const gid = region.properties.gid;
         layer.bindPopup("<b>Region: </b>" + gid + "<br/><b>Value: </b>" + indicators[gid-1][props.selectedIndicator]);
-        layer.options.fillColor = style.getColor(indicators[gid-1][props.selectedIndicator], colors[props.selectedIndicator]);
+        layer.options.fillColor = style.getColor(indicators[gid-1][props.selectedIndicator], colors[props.selectedIndicator], props.selectedColorPalette);
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,

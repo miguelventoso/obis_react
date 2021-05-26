@@ -1,15 +1,17 @@
-import polygonsOr from '../data/polygons/or.json'
-import indicatorsOr from '../data/jsons/indicators_or.json'
-import colorsOr from '../data/jsons/colors_or.json'
+import polygonsOr from '../data/polygons/or.json';
+import indicatorsOr from '../data/jsons/indicators_or.json';
+import colorsOr from '../data/jsons/colors_or.json';
 
-import polygonsEez from '../data/polygons/eez_lr_small.json'
-import indicatorsEez from '../data/jsons/indicators_eez.json'
-import colorsEez from '../data/jsons/colors_eez.json'
+import polygonsEez from '../data/polygons/eez_lr_small.json';
+import indicatorsEez from '../data/jsons/indicators_eez.json';
+import colorsEez from '../data/jsons/colors_eez.json';
+
+import colorPalettes from '../data/jsons/color_palettes.json';
 
 const {features: featuresOr} = polygonsOr;
 const {features: featuresEez} = polygonsEez;
 
-class LoadGeojsonTask{
+class LoadDataTask{
 
     loadGeojson = (setState, type) => {
         switch(type) {
@@ -18,6 +20,8 @@ class LoadGeojsonTask{
                 break;
             case 'eez':
                 setState(featuresEez);
+                break;
+            default: 
                 break;
         }
         
@@ -31,6 +35,8 @@ class LoadGeojsonTask{
             case 'eez':
                 setState(indicatorsEez);
                 break;
+            default: 
+                break;
         }
     }
 
@@ -42,6 +48,8 @@ class LoadGeojsonTask{
             case 'eez':
                 setState(colorsEez);
                 break;
+            default: 
+                break;
         }
     }
 
@@ -49,6 +57,10 @@ class LoadGeojsonTask{
         setState(type);
     }
 
+    loadColorPalettes = (setState, type) => {
+        setState(colorPalettes[type]);
+    }
+
 }
 
-export default LoadGeojsonTask;
+export default LoadDataTask;

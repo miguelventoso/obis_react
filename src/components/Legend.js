@@ -5,7 +5,8 @@ import Style from '../entities/Style'
 
 var add = true;
 
-function display(props, div, style) {
+function display(props, div) {
+  const style = new Style();
   const grades = props.colors[props.selectedIndicator];
       let labels = [];
       let from;
@@ -20,8 +21,8 @@ function display(props, div, style) {
 
         labels.push(
           '<i style="background:' +
-            style.getColorList()[i] +
-            '"></i> ' +
+            props.selectedColorPalette[i] +
+            '"></i>' +
             from +
             (to ? "&ndash;" + to : "+")
         );
@@ -29,16 +30,15 @@ function display(props, div, style) {
       labels.push(
         '<i style="background:' +
           style.getBlack() +
-          '"></i> ' +
+          '"></i>' +
           0
       );
-      div.innerHTML = labels.join("<br>");
+      div.innerHTML = labels.join("<br/><br/>");
       return div;
 }
 
 const Legend = (props) => {
   const map = useMap();
-  const style = new Style();
 
   useEffect(() => {
 
@@ -48,7 +48,7 @@ const Legend = (props) => {
 
       legend.onAdd = () => {
         const div = L.DomUtil.create("div", "info legend");
-        return display(props, div, style);
+        return display(props, div);
       };
         legend.addTo(map);
         add = false;
@@ -56,10 +56,10 @@ const Legend = (props) => {
     //if second time called just grab it and change its innerHTML
     else{
       const div = document.getElementsByClassName('info legend')[0];
-      if(div) return display(props, div, style);
+      if(div) return display(props, div);
     }
     
-  }, []);
+  });
   return null;
 };
 
