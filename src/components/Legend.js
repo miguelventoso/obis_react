@@ -15,9 +15,9 @@ function display(props, div) {
       labels.push('<b style={text-align:"center"}>Legend</b><br/>')
 
       for (let i = grades.length; i >= 0; i--) {
-        from = grades[i-1];
-        if(from === undefined) from = 0;
-        to = grades[i];
+        if(grades[i-1] === undefined) from = 0;
+        else from = style.formatNumberWithCommas(grades[i-1]);
+        if(grades[i] != undefined)to = style.formatNumberWithCommas(grades[i]);
 
         labels.push(
           '<i style="background:' +
@@ -29,7 +29,7 @@ function display(props, div) {
       }
       labels.push(
         '<i style="background:' +
-          style.getBlack() +
+          style.getZeroColor() +
           '"></i>' +
           0
       );

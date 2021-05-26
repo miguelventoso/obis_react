@@ -1,10 +1,14 @@
 import { useMap } from "react-leaflet";
 import L from "leaflet";
 import { useEffect } from "react";
+import Style from '../entities/Style'
+
 
 const Info = (props) => {
 
     const map = useMap();
+    const style = new Style();
+    const measure = style.measureUnits(props.selectedIndicator);
 
     useEffect(() => {
 
@@ -17,9 +21,10 @@ const Info = (props) => {
         };
 
         info.update = function (props) {
-            div.innerHTML = '<h4>Result of indicator</h4>' +  (props ? '<b>Indicator: ' + props.selectedIndicator + '</b><br />' +
-                'Region: ' + props.selectedRegion.gid + '<br />Value: ' + props.selectedRegion.value
-                : 'Select a region');
+            div.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
+                    '</b><br/>Indicator: ' + props.selectedIndicator +
+                    '<br/>Region GID: ' + props.selectedRegion.gid 
+                    : 'Select a region');
         };
 
         info.addTo(map);
@@ -34,8 +39,9 @@ const Info = (props) => {
                 info.innerHTML = '<h4>Select a region</h4>';
             }
             else{
-                info.innerHTML = '<h4>Result of indicator</h4>' +  (props ? '<b>Indicator: ' + props.selectedIndicator + '</b><br />' +
-                    'Region: ' + props.selectedRegion.gid + '<br />Value: ' + props.selectedRegion.value
+                info.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
+                    '</b><br/>Indicator: ' + props.selectedIndicator +
+                    '<br/>Region GID: ' + props.selectedRegion.gid 
                     : 'Select a region');
             }
             

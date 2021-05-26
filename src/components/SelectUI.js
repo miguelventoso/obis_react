@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 120,
         zIndex: 80000,
         backgroundColor: '#f2f2f2',
-        borderRadius: 3,
+        borderRadius: 5,
         
     },
     selectEmpty: {
@@ -61,7 +61,7 @@ const SelectUI = (props) => {
     return (
         <div className={classes.ui}>
             <FormControl className={classes.formControl}>
-                <InputLabel>Polygon Type</InputLabel>
+                <b>Polygon Type</b>
                     <NativeSelect
                     variant="outlined"
                     onChange={(e) => {
@@ -80,7 +80,7 @@ const SelectUI = (props) => {
             </FormControl>
             <Tooltip title={text}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel>Indicator Type</InputLabel>
+                    <b>Indicator Type</b>
                         <NativeSelect
                         variant="outlined"
                         onChange={(e) => {
@@ -103,7 +103,7 @@ const SelectUI = (props) => {
                 </FormControl>
             </Tooltip>
             <FormControl className={classes.formControl}>
-                <InputLabel>Color Palette</InputLabel>
+                <b>Color Palette</b>
                     <NativeSelect
                     variant="outlined"
                     onChange={(e) => {

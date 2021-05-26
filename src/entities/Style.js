@@ -11,8 +11,32 @@ class Style {
             d === 0 ? '#000000' : palette[0];
     }
 
-    getBlack = () => {
+    getZeroColor = () => {
         return '#000000';
+    }
+
+    formatNumberWithCommas = (number) => {
+        var rounded = Math.round(number * 100000) / 100000;
+        var parts = rounded.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+
+    measureUnits = (type) => {
+        switch(type){
+            case 'entities':
+                return ' entities';
+            case 'density':
+                return ' entities per sqkm';
+            case 'richness':
+                return ' species';
+            case 'redlist':
+                return '%';
+            case 'simpson':
+                return '%';
+            default:
+                return ''
+        }
     }
 
     
