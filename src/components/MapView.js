@@ -8,11 +8,25 @@ import SelectUI from './SelectUI';
 import Bounds from '../entities/Bounds';
 import { CRS } from 'leaflet';
 import DownloadButtons from './DownloadButtons';
+import Chart from '../components/Chart';
 
-
+function ShowChart(props) {
+  const show = props.show;
+  if (show) {
+    return <Chart 
+              setShowChart={props.setShowChart} 
+              selectedIndicator={props.selectedIndicator}
+              selectedRegion={props.selectedRegion}
+              chartGid={props.chartGid}
+            />;
+  }
+  return<></>;
+}
 
 const MapView = (props) => {
   const [selectedRegion, setSelectedRegion] = useState({gid: 0, value: 0});
+  const [showChart, setShowChart] = useState(false);
+  const [chartGid, setChartGid] = useState([]);
   return(
     <div>
       <MapContainer center={props.center} zoom={props.zoom} scrollWheelZoom={true} zoomDelta={0.25} zoomSnap={0}>
@@ -21,8 +35,8 @@ const MapView = (props) => {
           selectedRegion={selectedRegion}/>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png'
-          noWrap= {false}
+          url='https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png'
+          noWrap= {true}
           minZoom= {2}
         />
         <CustomGeojson
@@ -33,6 +47,8 @@ const MapView = (props) => {
           setSelectedRegion={setSelectedRegion}
           selectedIndicator={props.selectedIndicator}
           selectedColorPalette={props.selectedColorPalette}
+          setShowChart={setShowChart}
+          setChartGid={setChartGid}
         /> 
         <SelectUI 
           load={props.load}
@@ -42,11 +58,19 @@ const MapView = (props) => {
           colors={props.colors}
           selectedIndicator={props.selectedIndicator}
           selectedColorPalette={props.selectedColorPalette}/>
+        <DownloadButtons
+          indicators={props.indicators}
+          selectedIndicator={props.selectedIndicator}
+          regions={props.regions}/>
+        <ShowChart 
+          show={showChart} 
+          setShowChart={setShowChart}
+          selectedIndicator={props.selectedIndicator}
+          selectedRegion={selectedRegion}
+          chartGid={chartGid}/>
       </MapContainer>
-      <DownloadButtons
-        indicators={props.indicators}
-        selectedIndicator={props.selectedIndicator}
-        regions={props.regions}/>
+      
+      
       
     </div>
   );

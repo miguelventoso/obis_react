@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 80000,
         backgroundColor: '#f2f2f2',
         borderRadius: 5,
+        paddingLeft: 5,
         
     },
     selectEmpty: {
@@ -44,9 +45,9 @@ function displayHelp(type) {
         case 'berger_parker':
             return 'Percentage of total entities from the most abundant species in the region';
         case 'hill_1':
-            return 'Hill 1';
+            return 'Series of indicators commonly used in scientific researches as a unified diversity concept';
         case 'hill_2':
-            return 'Hill 2';
+            return 'Series of indicators commonly used in scientific researches as a unified diversity concept';
         default:
             return;
     }

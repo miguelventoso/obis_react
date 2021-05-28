@@ -22,14 +22,14 @@ const Info = (props) => {
 
         info.update = function (props) {
             div.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
-                    '</b><br/>Indicator: ' + props.selectedIndicator +
-                    '<br/>Region GID: ' + props.selectedRegion.gid 
+            '</b><br/>Region GID: ' + props.selectedRegion.gid +         
+            '<br/>Indicator: ' + props.selectedIndicator 
                     : 'Select a region');
         };
 
         info.addTo(map);
         
-    }, [map]);
+    }, []);
 
     useEffect(() => {
         const info = document.getElementsByClassName('info container')[0];
@@ -40,8 +40,9 @@ const Info = (props) => {
             }
             else{
                 info.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
-                    '</b><br/>Indicator: ' + props.selectedIndicator +
-                    '<br/>Region GID: ' + props.selectedRegion.gid 
+                '</b><br/>Region GID: ' + props.selectedRegion.gid +    
+                '<br/>Indicator: ' + props.selectedIndicator 
+                    
                     : 'Select a region');
             }
             

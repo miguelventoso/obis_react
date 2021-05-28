@@ -40,28 +40,30 @@ const CustomGeojson = React.memo((props) => {
     function resetHighlight(e) {
         e.target.setStyle(polyognStyle());
     }
-    
-    function zoomToFeature(e) {
-        map.fitBounds(e.target.getBounds());
+
+    function updateChart(e) {
+        props.setShowChart(true); 
+        props.setChartGid(e.target.feature.properties.gid);        
     }
   
     function onEachRegionClosure(indicators, colors) {
         const style = new Style();
       return function onEachRegion(region, layer) {
         const gid = region.properties.gid;
-        layer.bindPopup("<b>Region: </b>" + gid + "<br/><b>Value: </b>" + indicators[gid-1][props.selectedIndicator]);
+        //layer.bindPopup("<b>Region: </b>" + gid + "<br/><b>Value: </b>" + indicators[gid-1][props.selectedIndicator]);
+        //layer.bindPopup(<Chart/>);
         layer.options.fillColor = style.getColor(indicators[gid-1][props.selectedIndicator], colors[props.selectedIndicator], props.selectedColorPalette);
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
-            click: zoomToFeature
+            click: updateChart,
         });
       }
     }
     return(
         <GeoJSON 
             data={props.regions} 
-            onEachFeature={onEachRegionClosure(props.indicators, props.colors, map)}
+            onEachFeature={onEachRegionClosure(props.indicators, props.colors)}
             style={polyognStyle}/>
     );
 });

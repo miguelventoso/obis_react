@@ -42,7 +42,7 @@ const Legend = (props) => {
 
   useEffect(() => {
 
-    //if first time called (just to create div, control and add it to map)
+    //if first time called, create div and add it to map)
     if(add){
       const legend = L.control({ position: "bottomleft" });
 
@@ -50,8 +50,8 @@ const Legend = (props) => {
         const div = L.DomUtil.create("div", "info legend");
         return display(props, div);
       };
-        legend.addTo(map);
-        add = false;
+      legend.addTo(map);
+      add = false;
     }
     //if second time called just grab it and change its innerHTML
     else{
