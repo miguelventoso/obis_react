@@ -14,12 +14,13 @@ const Obis = () => {
     const [colors, setColors] = useState([]);
     const [selectedIndicator, setSelectedIndicator] = useState([]);
     const [selectedColorPalette, setSelectedColorPalette] = useState([]);
+    const [chartData, setChartData] = useState({});
 
 
     const LoadData = new LoadDataTask();
     const load = () => {    
         LoadData.loadGeojson(setRegions, 'or');
-        LoadData.loadIndicators(setIndicators, 'or');
+        LoadData.loadIndicators(setIndicators, setChartData, 'or');
         LoadData.loadColors(setColors, 'or');
         LoadData.loadSelectedIndicator(setSelectedIndicator, 'entities');
         LoadData.loadColorPalettes(setSelectedColorPalette, 'blue');
@@ -31,7 +32,7 @@ const Obis = () => {
                 LoadData.loadGeojson(setRegions, type);
                 break;
             case 'indicator':
-                LoadData.loadIndicators(setIndicators, type);
+                LoadData.loadIndicators(setIndicators, setChartData, type);
                 break;
             case 'color':
                 LoadData.loadColors(setColors, type);
@@ -58,7 +59,7 @@ const Obis = () => {
             ) : ( 
                 <div>
                     <MapView center={position} zoom={zoom} 
-                    regions={regions} indicators={indicators} colors={colors} 
+                    regions={regions} indicators={indicators} chartData={chartData} colors={colors} 
                     load={setters} selectedIndicator={selectedIndicator} selectedColorPalette={selectedColorPalette}
                     />
                 </div>

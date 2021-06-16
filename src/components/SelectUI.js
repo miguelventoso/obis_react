@@ -39,11 +39,11 @@ function displayHelp(type) {
         case 'density':
             return 'Number of total marine entities divided by polygon surface (square km)';
         case 'shannon':
-            return 'Probability of predicting succesfully the species of a new sample in the region. High probability means some species are more abundant than others, resulting in less biodiversity.';
+            return 'Difficulty of predicting succesfully the species of a new sample in the region. High difficulty means more species have similar numbers of individuals, making it harder to predict the species of a new sample and resulting in higher biodiversity.';
         case 'simpson':
-            return 'Probability that two random entities taken from a region are form the same species';
+            return 'Probability of two random entities taken from a region belonging to the same species';
         case 'berger_parker':
-            return 'Percentage of total entities from the most abundant species in the region';
+            return 'Probability that a randomly taken sample belongs to the most abundant species in that region';
         case 'hill_1':
             return 'Series of indicators commonly used in scientific researches as a unified diversity concept';
         case 'hill_2':

@@ -18,6 +18,8 @@ function ShowChart(props) {
               selectedIndicator={props.selectedIndicator}
               selectedRegion={props.selectedRegion}
               chartGid={props.chartGid}
+              chartData={props.chartData}
+              setChartData={props.setChartData}
             />;
   }
   return<></>;
@@ -35,7 +37,7 @@ const MapView = (props) => {
           selectedRegion={selectedRegion}/>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png'
+          url='https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png'
           noWrap= {true}
           minZoom= {2}
         />
@@ -67,11 +69,10 @@ const MapView = (props) => {
           setShowChart={setShowChart}
           selectedIndicator={props.selectedIndicator}
           selectedRegion={selectedRegion}
+          chartData={props.chartData}
+          setChartData={props.setChartData}
           chartGid={chartGid}/>
       </MapContainer>
-      
-      
-      
     </div>
   );
 }
