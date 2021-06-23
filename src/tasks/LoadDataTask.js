@@ -1,18 +1,18 @@
 //standard data
-import polygonsOr from '../data/polygons/or.json';
-import indicatorsOr from '../data/indicators/indicators_or.json';
-import colorsOr from '../data/colors/colors_or.json';
+import polygonsOr from '../data/polygons/JSON_or_V1.0.json';
+import indicatorsOr from '../data/indicators/JSON_indicators_or_V1.0.json';
+import colorsOr from '../data/colors/JSON_colors_or_V1.0.json';
 
-import polygonsEez from '../data/polygons/eez_lr_small.json';
-import indicatorsEez from '../data/indicators/indicators_eez.json';
-import colorsEez from '../data/colors/colors_eez.json';
+import polygonsEez from '../data/polygons/JSON_eez_lr_small_V1.0.json';
+import indicatorsEez from '../data/indicators/JSON_indicators_eez_V1.0.json';
+import colorsEez from '../data/colors/JSON_colors_eez_V1.0.json';
 
-import colorPalettes from '../data/colors/color_palettes.json';
+import colorPalettes from '../data/colors/JSON_color_palettes_V1.0.json';
 
 //decade data
 
-import indicatorsDecadeEez from '../data/indicators/decades/biodiversity_indicators_eez.json'
-//import indicatorsDecadeOr from '../data/indicators/decades/biodiversity_indicators_or.json'
+import indicatorsDecadeEez from '../data/indicators/decades/JSON_decade_indicators_eez_V1.0.json'
+import indicatorsDecadeOr from '../data/indicators/decades/JSON_decade_indicators_or_V1.0.json'
 
 //code
 const {features: featuresOr} = polygonsOr;
@@ -32,7 +32,7 @@ class LoadDataTask{
         switch(type) {
             case 'or': 
                 setState(indicatorsOr); 
-                //setStateDecades(indicatorsDecadeOr);
+                setStateDecades(indicatorsDecadeOr);
                 break;
             case 'eez': 
                 setState(indicatorsEez); 

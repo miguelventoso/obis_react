@@ -35,7 +35,6 @@ function download(props, fileName, polygons) {
             }
             jsonStr = JSON.stringify(json);
         }
-        
         let element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jsonStr));
         element.setAttribute('download', fileName);

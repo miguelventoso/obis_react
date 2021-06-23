@@ -21,14 +21,15 @@ const Info = (props) => {
         };
 
         info.update = function (props) {
-            div.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
+            div.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' 
+            + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
             '</b><br/>Region GID: ' + props.selectedRegion.gid +         
             '<br/>Indicator: ' + props.selectedIndicator 
                     : 'Select a region');
         };
 
         info.addTo(map);
-        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -39,7 +40,8 @@ const Info = (props) => {
                 info.innerHTML = '<h4>Select a region</h4>';
             }
             else{
-                info.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + style.formatNumberWithCommas(props.selectedRegion.value) + measure +
+                info.innerHTML = '<h4>Detailed Results:</h4>' +  (props ? '<b/>Result: ' + 
+                style.formatNumberWithCommas(props.selectedRegion.value) + measure +
                 '</b><br/>Region GID: ' + props.selectedRegion.gid +    
                 '<br/>Indicator: ' + props.selectedIndicator 
                     
@@ -47,7 +49,7 @@ const Info = (props) => {
             }
             
         }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props]);
     return null;
 }

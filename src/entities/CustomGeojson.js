@@ -1,4 +1,4 @@
-import { useMap, GeoJSON } from 'react-leaflet';
+import { GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Style from '../entities/Style'
 import L from "leaflet";
@@ -7,9 +7,7 @@ import React from 'react';
 //el memo rerenderiza si las anteriores props y las siguientes son distintas, es decir, si se ha cambiado alguna de las props
 const CustomGeojson = React.memo((props) => {
 
-    const map = useMap();
-
-    const polyognStyle = () => {
+    const polygonStyle = () => {
         return {
             weight: 2,
             opacity: 1,
@@ -38,7 +36,7 @@ const CustomGeojson = React.memo((props) => {
     }
     
     function resetHighlight(e) {
-        e.target.setStyle(polyognStyle());
+        e.target.setStyle(polygonStyle());
     }
 
     function updateChart(e) {
@@ -48,23 +46,21 @@ const CustomGeojson = React.memo((props) => {
   
     function onEachRegionClosure(indicators, colors) {
         const style = new Style();
-      return function onEachRegion(region, layer) {
-        const gid = region.properties.gid;
-        //layer.bindPopup("<b>Region: </b>" + gid + "<br/><b>Value: </b>" + indicators[gid-1][props.selectedIndicator]);
-        //layer.bindPopup(<Chart/>);
-        layer.options.fillColor = style.getColor(indicators[gid-1][props.selectedIndicator], colors[props.selectedIndicator], props.selectedColorPalette);
-        layer.on({
-            mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: updateChart,
-        });
-      }
+        return function onEachRegion(region, layer) {
+            const gid = region.properties.gid;
+            layer.options.fillColor = style.getColor(indicators[gid-1][props.selectedIndicator], colors[props.selectedIndicator], props.selectedColorPalette);
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: updateChart,
+            });
+        }
     }
     return(
         <GeoJSON 
             data={props.regions} 
             onEachFeature={onEachRegionClosure(props.indicators, props.colors)}
-            style={polyognStyle}/>
+            style={polygonStyle}/>
     );
 });
 

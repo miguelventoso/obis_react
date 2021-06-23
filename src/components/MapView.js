@@ -5,8 +5,6 @@ import Legend from './Legend';
 import Info from './Info';
 import CustomGeojson from '../entities/CustomGeojson';
 import SelectUI from './SelectUI';
-import Bounds from '../entities/Bounds';
-import { CRS } from 'leaflet';
 import DownloadButtons from './DownloadButtons';
 import Chart from '../components/Chart';
 
@@ -26,8 +24,8 @@ function ShowChart(props) {
 }
 
 const MapView = (props) => {
-  const [selectedRegion, setSelectedRegion] = useState({gid: 0, value: 0});
   const [showChart, setShowChart] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState({gid: 0, value: 0});
   const [chartGid, setChartGid] = useState([]);
   return(
     <div>
@@ -35,12 +33,6 @@ const MapView = (props) => {
         <Info 
           selectedIndicator={props.selectedIndicator}
           selectedRegion={selectedRegion}/>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png'
-          noWrap= {true}
-          minZoom= {2}
-        />
         <CustomGeojson
           key={props.regions + props.selectedIndicator + props.selectedColorPalette}
           regions={props.regions}
@@ -55,6 +47,12 @@ const MapView = (props) => {
         <SelectUI 
           load={props.load}
           selectedIndicator={props.selectedIndicator}/>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.basemaps.cartocdn.com/rastertiles/light_nolabels/{z}/{x}/{y}.png'
+          noWrap= {true}
+          minZoom= {2}
+        />
         <Legend
           key={props.selectedIndicator + props.selectedColorPalette}
           colors={props.colors}

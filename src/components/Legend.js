@@ -17,7 +17,7 @@ function display(props, div) {
       for (let i = grades.length; i >= 0; i--) {
         if(grades[i-1] === undefined) from = 0;
         else from = style.formatNumberWithCommas(grades[i-1]);
-        if(grades[i] != undefined)to = style.formatNumberWithCommas(grades[i]);
+        if(grades[i] !== undefined)to = style.formatNumberWithCommas(grades[i]);
 
         labels.push(
           '<i style="background:' +
